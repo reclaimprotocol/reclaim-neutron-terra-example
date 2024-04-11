@@ -4,11 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { NeutronContextProvider } from "./utilities/NeutronContext";
+ 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <NeutronContextProvider>
     <App />
-  </React.StrictMode>
+  </NeutronContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
