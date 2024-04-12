@@ -1,14 +1,15 @@
 import { createContext, useState } from "react";
- 
+import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
+
 const NeutronContext = createContext(null);
 const NEUTRON_CHAIN_ID = "pion-1";
 const NEUTRON_LCD = "https://rpc-palvus.pion-1.ntrn.tech/";
  
 const NeutronContextProvider = ({ children }) => {
-  const [neutronjs, setNeutronJS] = useState(null);
+  const [neutronClient, setNeutronClient] = useState(null);
   const [neutronAddress, setNeutronAddress] = useState("");
  
-  async function setupKeplr(setNeutronJS, setNeutronAddress) {
+  async function setupKeplr(setNeutronClient, setNeutronAddress) {
     const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
  
     while (
@@ -34,18 +35,10 @@ const NeutronContextProvider = ({ children }) => {
     console.log(accounts[0].address);
     const neutronAddress = accounts[0].address;
  
-    // const neutronjs = new SecretNetworkClient({
-    //   url: NEUTRON_LCD,
-    //   chainId: NEUTRON_CHAIN_ID,
-    //   wallet: keplrOfflineSigner,
-    //   walletAddress: neutronAddress,
-    //   encryptionUtils: window.getEnigmaUtils(NEUTRON_CHAIN_ID),
-    // });
-
-    const neutronjs = "";
+    const neutronClient = await SigningCosmWasmClient.connectWithSigner(NEUTRON_LCD, keplrOfflineSigner);
  
     setNeutronAddress(neutronAddress);
-    setNeutronJS(neutronjs);
+    setNeutronClient(neutronClient);
   }
  
   async function connectWallet() {
@@ -53,7 +46,7 @@ const NeutronContextProvider = ({ children }) => {
       if (!window.keplr) {
         console.log("intall keplr!");
       } else {
-        await setupKeplr(setNeutronJS, setNeutronAddress);
+        await setupKeplr(setNeutronClient, setNeutronAddress);
         localStorage.setItem("keplrAutoConnect", "true");
         console.log(neutronAddress);
       }
@@ -65,9 +58,9 @@ const NeutronContextProvider = ({ children }) => {
   }
  
   function disconnectWallet() {
-    // reset neutronjs and neutronAddress
+    // reset neutronClient and neutronAddress
     setNeutronAddress("");
-    setNeutronJS(null);
+    setNeutronClient(null);
  
     // disable auto connect
     localStorage.setItem("keplrAutoConnect", "false");
@@ -79,8 +72,8 @@ const NeutronContextProvider = ({ children }) => {
   return (
     <NeutronContext.Provider
       value={{
-        neutronjs,
-        setNeutronJS,
+        neutronClient,
+        setNeutronClient,
         neutronAddress,
         setNeutronAddress,
         connectWallet,

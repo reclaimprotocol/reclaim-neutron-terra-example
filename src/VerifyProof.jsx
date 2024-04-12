@@ -19,12 +19,10 @@ export default function VerifyProof(props) {
         onClick={async () => {
           try {
             console.log(proof);
-            alert(proof);
             await verify_proof(proof);
+            setVerified(true);
           } catch (e) {
             console.error(e);
-          } finally {
-            setVerified(true);
           }
         }}
       >
