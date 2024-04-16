@@ -67,8 +67,6 @@ function App() {
         {url && <QRCode value={url} />}
       </div>
       {ready && <VerifyProof proof={proof}></VerifyProof>}
-      {/* Used for testing */}
-      {/* <VerifyProof proof={proof}></VerifyProof> */}
     </div>
   );
 }
