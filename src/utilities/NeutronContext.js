@@ -73,14 +73,6 @@ const NeutronContextProvider = ({ children }) => {
     console.log("Wallet disconnected!");
   }
 
-  /*
-
-  const NEUTRON_CHAIN_ID = "pion-1";
-  const NEUTRON_LCD = "https://rpc-palvus.pion-1.ntrn.tech";
-
-  // Uncomment for Mainnet
-  // const NEUTRON_LCD = "https://rpc-kralum.neutron-1.neutron.org";
-  */
   async function addNeutronToKeplr () {
         try {
           if (!window.keplr) {
@@ -178,8 +170,6 @@ const NeutronContextProvider = ({ children }) => {
     }
   }
 
-
- 
   return (
     <NeutronContext.Provider
       value={{
@@ -197,7 +187,4 @@ const NeutronContextProvider = ({ children }) => {
   );
 };
 
-
-
 export { NeutronContext, NeutronContextProvider };
- 
