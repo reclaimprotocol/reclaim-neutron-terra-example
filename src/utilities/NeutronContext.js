@@ -4,6 +4,9 @@ import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
 const NeutronContext = createContext(null);
 const NEUTRON_CHAIN_ID = "pion-1";
 const NEUTRON_LCD = "https://rpc-palvus.pion-1.ntrn.tech/";
+
+// Uncomment for Mainnet
+// const NEUTRON_LCD = "https://rpc-kralum.neutron-1.neutron.org";
  
 const NeutronContextProvider = ({ children }) => {
   const [neutronClient, setNeutronClient] = useState(null);
