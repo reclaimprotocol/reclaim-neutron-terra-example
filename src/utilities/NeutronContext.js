@@ -1,11 +1,11 @@
 import { createContext, useState } from "react";
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
 
-const NeutronContext = createContext(null);
+ const NeutronContext = createContext(null);
 const NEUTRON_CHAIN_ID = "pion-1";
 const NEUTRON_LCD = "https://rpc-palvus.pion-1.ntrn.tech/";
 
-// Uncomment for Mainnet
+//Uncomment for Mainnet
 // const NEUTRON_CHAIN_ID = "neutron-1";
 // const NEUTRON_LCD = "https://rpc-kralum.neutron-1.neutron.org";
  
@@ -122,7 +122,6 @@ const NeutronContextProvider = ({ children }) => {
               "features": ["cosmwasm"]
             }
             */
-
             const chainConfig = {
               "rpc": "https://rpc-palvus.pion-1.ntrn.tech",
               "rest": "https://rest-palvus.pion-1.ntrn.tech",
