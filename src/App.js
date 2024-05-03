@@ -36,7 +36,6 @@ function App() {
 
     await reclaimClient.startSession({
       onSuccessCallback: (proofs) => {
-        console.log("Verification success", proofs);
         setReady(true);
         setProof(proofs[0]);
         // Your business logic here

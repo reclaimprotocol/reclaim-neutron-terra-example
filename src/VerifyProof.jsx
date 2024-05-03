@@ -18,9 +18,11 @@ export default function VerifyProof(props) {
         className="button"
         onClick={async () => {
           try {
-            console.log(proof);
-            await verify_proof(proof);
-            setVerified(true);
+            if (await verify_proof(proof) === true) {
+              setVerified(true);
+            } else {
+              setVerified(false);
+            }
           } catch (e) {
             console.error(e);
           }

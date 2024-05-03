@@ -1,14 +1,10 @@
 import { createContext, useState } from "react";
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
 
- const NeutronContext = createContext(null);
-const NEUTRON_CHAIN_ID = "pion-1";
-const NEUTRON_LCD = "https://rpc-palvus.pion-1.ntrn.tech/";
+const NeutronContext = createContext(null);
+const NEUTRON_CHAIN_ID = "neutron-1";
+const NEUTRON_LCD = "https://rpc-kralum.neutron-1.neutron.org";
 
-//Uncomment for Mainnet
-// const NEUTRON_CHAIN_ID = "neutron-1";
-// const NEUTRON_LCD = "https://rpc-kralum.neutron-1.neutron.org";
- 
 const NeutronContextProvider = ({ children }) => {
   const [neutronClient, setNeutronClient] = useState(null);
   const [neutronAddress, setNeutronAddress] = useState("");
@@ -78,8 +74,6 @@ const NeutronContextProvider = ({ children }) => {
           if (!window.keplr) {
             alert("Intall keplr!");
           } else {
-            //Uncomment for Mainnet
-            /*
             const chainConfig = {
               "rpc": "https://rpc-neutron.keplr.app",
               "rest": "https://lcd-neutron.keplr.app",
@@ -120,45 +114,6 @@ const NeutronContextProvider = ({ children }) => {
                 }
               ],
               "features": ["cosmwasm"]
-            }
-            */
-            const chainConfig = {
-              "rpc": "https://rpc-palvus.pion-1.ntrn.tech",
-              "rest": "https://rest-palvus.pion-1.ntrn.tech",
-              "chainId": "pion-1",
-              "chainName": "Neutron Testnet",
-              "chainSymbolImageUrl": "https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/neutron/chain.png",
-              "bip44": {
-                "coinType": 118
-              },
-              "bech32Config": {
-                "bech32PrefixAccAddr": "neutron",
-                "bech32PrefixAccPub": "neutronpub",
-                "bech32PrefixValAddr": "neutronvaloper",
-                "bech32PrefixValPub": "neutronvaloperpub",
-                "bech32PrefixConsAddr": "neutronvalcons",
-                "bech32PrefixConsPub": "neutronvalconspub"
-              },
-              "currencies": [
-                {
-                  "coinDenom": "NTRN",
-                  "coinMinimalDenom": "untrn",
-                  "coinDecimals": 6
-                }
-              ],
-              "feeCurrencies": [
-                {
-                  "coinDenom": "NTRN",
-                  "coinMinimalDenom": "untrn",
-                  "coinDecimals": 6,
-                  "gasPriceStep": {
-                    "low": 0.02,
-                    "average": 0.02,
-                    "high": 0.02
-                  }
-                }
-              ],
-              "features": []
             }
           await window.keplr.experimentalSuggestChain(chainConfig);
       }
