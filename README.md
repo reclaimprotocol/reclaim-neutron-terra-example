@@ -20,8 +20,8 @@ Follow these steps to set up the project locally.
 
 Run this command:
 ```bash
-git clone https://gitlab.reclaimprotocol.org/starterpacks/reclaim-neutron-example.git
-cd reclaim-neutron-example
+git clone https://gitlab.reclaimprotocol.org/starterpacks/reclaim-neutron-terra-example.git
+cd reclaim-neutron-terra-example
 ```
 ### 2. Install Dependencies
 
